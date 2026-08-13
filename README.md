@@ -3,36 +3,43 @@
 Sandbox experiment for **Sanjay Wood Tech / clawSW**.  
 **Does not touch** the production Hero3D in the main clawSW repo.
 
-## Run locally
+## Quick start
 
 ```bash
-# from repo root
+git clone https://github.com/sanjaymaverick-cmd/testhero.git
+cd testhero
 python3 -m http.server 8765
 ```
 
-Open:
+Open [http://127.0.0.1:8765/machine-hero.html](http://127.0.0.1:8765/machine-hero.html)
 
-- [http://127.0.0.1:8765/machine-hero.html](http://127.0.0.1:8765/machine-hero.html) — **primary** Industrial Temple hero  
-- [http://127.0.0.1:8765/precision-cut-core.html](http://127.0.0.1:8765/precision-cut-core.html) — earlier timber-core experiment  
+## Files
 
-## Industrial Temple (`machine-hero.html`)
+| File | Role |
+|------|------|
+| `machine-hero.html` | Industrial Temple hero (Three.js + meshopt machine) |
+| `machine-hero-app.js` | Scene logic (loaded by the HTML) |
+| `precision-cut-core.html` | Earlier timber-core prototype |
+| `public/models/machine.glb` | Meshopt-compressed Tripo machine mesh (~4.2 MB) |
 
-- Real machine mesh: `public/models/machine.glb` (meshopt-compressed Tripo export)
-- Three.js + `MeshoptDecoder` (required for meshopt GLB)
-- Timber stream along the **machine bed** (photo-matched feed path)
-- Scroll stages: Infeed → Registration → Cut → Kerf → Outfeed → Joint → Assembly → Form
-- Creative grammar: factory rhythm + temple gravity, mortise & tenon, dougong / Daibutsuyō / Zenshūyō as structural metaphors
-- Custom PBR: gunmetal machine, wood stock, gold joint accent
+## Full assets
 
-## Assets
+Complete experiment sources also live in the Grok artifacts sandbox:
 
-| Path | Notes |
-|------|--------|
-| `machine-hero.html` | Main experiment (self-contained CDN Three.js) |
-| `precision-cut-core.html` | Prior prototype |
-| `public/models/machine.glb` | ~4.2 MB meshopt GLB |
+`clawsw-hero3d-experiment/machine-hero.html` + `public/models/machine.glb`
 
-## Notes
+To push the full binary GLB and latest HTML from a local copy of that folder:
 
-- Geometry-only mesh (no materials in source); materials overridden in-scene.
-- Parallel experiment only — not production clawSW website code.
+```bash
+cp machine-hero.html precision-cut-core.html /path/to/testhero/
+mkdir -p /path/to/testhero/public/models
+cp public/models/machine.glb /path/to/testhero/public/models/
+cd /path/to/testhero
+git add -A && git commit -m "Sync full Industrial Temple experiment" && git push
+```
+
+## Creative brief (summary)
+
+- Stream of timber along the machine bed (photo-matched feed)
+- Scroll stages: Infeed → Cut → Kerf → Outfeed → Mortise/tenon → Chair form
+- Grammar: factory rhythm + temple gravity; joinery as kept promises
